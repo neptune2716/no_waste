@@ -19,15 +19,6 @@ const nextConfig = {
       );
     }
 
-    // Ajouter cette règle pour ignorer les modules avec le schéma node:test
-    config.module.rules.push({
-      test: /node:test/,
-      use: "null-loader",
-    });
-
-    // Ajoutez cette ligne pour désactiver le cache temporairement
-    config.cache = false;
-
     return config;
   },
 };
