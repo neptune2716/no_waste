@@ -1,0 +1,62 @@
+/* Conteneur principal de la carte */
+#map-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px); /* Ajustez la hauteur selon vos besoins */
+}
+
+/* Conteneur du filtre de recyclage */
+#filter-container {
+  position: absolute;
+  left: 10px;
+  top: 200px;
+  background-color: white;
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  overflow-y: auto;
+  max-width: 300px;
+}
+
+/* Style du titre du filtre */
+#filter-container h3 {
+  margin-top: 0;
+}
+
+/* Style des boutons de sélection */
+#filter-container button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+/* Style des boutons de sélection au survol */
+#filter-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Conteneur de la carte Leaflet */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Style de l'en-tête */
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Conteneur principal pour aligner les éléments */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
