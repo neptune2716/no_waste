@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import test from "node:test";
 
 const SearchBar = ({ setCoordinates }) => {
   const [query, setQuery] = useState("");
@@ -55,5 +56,5 @@ const SearchBar = ({ setCoordinates }) => {
     </div>
   );
 };
-
+test.displayName = "SearchBar";
 export default SearchBar;

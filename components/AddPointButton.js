@@ -22,5 +22,6 @@ const AddPointButton = ({ onClick }) => {
     </button>
   );
 };
+TestMap.displayName = "AddPointButton";
 
 export default AddPointButton;

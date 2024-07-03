@@ -57,5 +57,5 @@ const SearchBar = ({ setCoordinates, setSearchLocation }) => {
     </div>
   );
 };
-
+TestMap.displayName = "SearchBar";
 export default SearchBar;
