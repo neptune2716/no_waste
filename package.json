@@ -6,16 +6,19 @@
     "dev": "concurrently \"npm run dev:next\" \"npm run dev:server\"",
     "dev:next": "next dev",
     "dev:server": "node server/server.mjs",
-    "build": "next build",
-    "start": "next start",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "eject": "react-scripts eject",
     "lint": "next lint"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.44.2",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "graceful-fs": "^4.2.11",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "next": "14.2.4",
@@ -24,7 +27,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
-    "react-leaflet-markercluster": "^3.0.0-rc1"
+    "react-leaflet-markercluster": "^3.0.0-rc1",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.3"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
