@@ -50,8 +50,9 @@ const searchicon = new L.Icon({
 
 const fetchPointsWithinBounds = async (bounds) => {
   const { _northEast, _southWest } = bounds;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const response = await axios.get(
-    `https://no-waste-pupgyi06m-neptune2716s-projects.vercel.app/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
+    `${backendUrl}/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
   );
   return response.data;
 };
@@ -99,8 +100,9 @@ const MarkerPopup = React.memo(({ point, setPoints, setMoveToPosition }) => {
 
   const handleSave = async () => {
     try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       const response = await axios.put(
-        `https://no-waste-pupgyi06m-neptune2716s-projects.vercel.app/recycling-points/${point.id}`,
+        `${backendUrl}/recycling-points/${point.id}`,
         editData
       );
       if (response.status !== 200) {
