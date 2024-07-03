@@ -7,7 +7,7 @@
     "dev:next": "next dev",
     "dev:server": "node server/server.mjs",
     "start": "react-app-rewired start",
-    "build": "webpack --config webpack.config.js",
+    "build": "next build",
     "eject": "react-scripts eject",
     "lint": "next lint"
   },
