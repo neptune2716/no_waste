@@ -104,6 +104,10 @@ app.post("/api/recycling-points", async (req, res) => {
   }
 });
 
+app.get("/api/test", (req, res) => {
+  res.send("Test endpoint is working");
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
