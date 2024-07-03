@@ -118,7 +118,7 @@ const MarkerPopup = React.memo(({ point, setPoints, setMoveToPosition }) => {
         return;
       }
       const response = await axios.put(
-        `${backendUrl}/recycling-points/${point.id}`,
+        `${backendUrl}/api/recycling-points/${point.id}`,
         editData
       );
       if (response.status !== 200) {
