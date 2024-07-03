@@ -3,15 +3,33 @@ import { createClient } from "@supabase/supabase-js";
 import cors from "cors";
 import dotenv from "dotenv";
 
+dotenv.config(); // Charger les variables d'environnement
+
 const app = express();
 const port = 3000;
 
-app.use(cors());
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:3000",
+  "http://localhost:3001",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 app.use(express.json());
 
-const supabaseUrl = "https://tyybgchyzgeqfjmkyxxq.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5eWJnY2h5emdlcWZqbWt5eHhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTkyNjU4MjEsImV4cCI6MjAzNDg0MTgyMX0.-qU3PL6IhNu9jGD5zCmdR7PmB4ORip70eTkAEEIDckM";
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.get("/recycling-points", async (req, res) => {
@@ -67,7 +85,6 @@ app.put("/recycling-points/:id", async (req, res) => {
   }
 });
 
-// Ajouter une nouvelle route POST pour ajouter un point de recyclage
 app.post("/recycling-points", async (req, res) => {
   try {
     const newPoint = req.body;
