@@ -54,14 +54,13 @@ console.log("Backend URL at start:", process.env.REACT_APP_BACKEND_URL);
 const fetchPointsWithinBounds = async (bounds) => {
   const { _northEast, _southWest } = bounds;
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  console.log("Backend URL in fetchPointsWithinBounds:", backendUrl);
   if (!backendUrl) {
     console.error("REACT_APP_BACKEND_URL is not defined");
     return [];
   }
   try {
     const response = await axios.get(
-      `${backendUrl}/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
+      `${backendUrl}/api/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
     );
     return response.data;
   } catch (error) {

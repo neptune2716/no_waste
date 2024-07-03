@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config(); // Charger les variables d'environnement
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const allowedOrigins = [
   process.env.FRONTEND_URL,
@@ -32,7 +32,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-app.get("/recycling-points", async (req, res) => {
+app.get("/api/recycling-points", async (req, res) => {
   try {
     const { ne_lat, ne_lng, sw_lat, sw_lng } = req.query;
     const { data, error } = await supabase
@@ -54,7 +54,7 @@ app.get("/recycling-points", async (req, res) => {
   }
 });
 
-app.put("/recycling-points/:id", async (req, res) => {
+app.put("/api/recycling-points/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -85,7 +85,7 @@ app.put("/recycling-points/:id", async (req, res) => {
   }
 });
 
-app.post("/recycling-points", async (req, res) => {
+app.post("/api/recycling-points", async (req, res) => {
   try {
     const newPoint = req.body;
     const { data, error } = await supabase
