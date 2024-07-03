@@ -1,4 +1,3 @@
-// testmap.js
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import {
@@ -18,7 +17,6 @@ import FilterComponent from "./FilterComponent";
 import SearchBar from "./SearchBar";
 import AddPointButton from "./AddPointButton";
 import AddPointForm from "./AddPointForm";
-import "../src/style.css";
 
 const customIcon = new L.Icon({
   iconUrl: "/icon.png",
@@ -53,7 +51,7 @@ const searchicon = new L.Icon({
 const fetchPointsWithinBounds = async (bounds) => {
   const { _northEast, _southWest } = bounds;
   const response = await axios.get(
-    `https://no-waste-1cblup2ox-neptune2716s-projects.vercel.app/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
+    `https://no-waste-pupgyi06m-neptune2716s-projects.vercel.app/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
   );
   return response.data;
 };
@@ -102,7 +100,7 @@ const MarkerPopup = React.memo(({ point, setPoints, setMoveToPosition }) => {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `https://no-waste-1cblup2ox-neptune2716s-projects.vercel.app/recycling-points/${point.id}`,
+        `https://no-waste-pupgyi06m-neptune2716s-projects.vercel.app/recycling-points/${point.id}`,
         editData
       );
       if (response.status !== 200) {
@@ -423,5 +421,7 @@ const TestMap = () => {
     </div>
   );
 };
+
+TestMap.displayName = "TestMap";
 
 export default TestMap;
