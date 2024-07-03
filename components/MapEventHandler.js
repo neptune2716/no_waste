@@ -1,4 +1,3 @@
-import test from "node:test";
 import { useMapEvents } from "react-leaflet";
 
 const MapEventHandler = ({ setPoints }) => {
@@ -13,5 +12,4 @@ const MapEventHandler = ({ setPoints }) => {
   return null;
 };
 
-test.displayName = "MapEventHandler";
 export default MapEventHandler;

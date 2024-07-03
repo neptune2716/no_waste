@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Conteneur principal de la carte */
 #map-container {
   position: relative;

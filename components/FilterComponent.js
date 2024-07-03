@@ -1,4 +1,3 @@
-import test from "node:test";
 import React from "react";
 
 const FilterComponent = ({ filters, setFilters }) => {
@@ -71,5 +70,4 @@ const FilterComponent = ({ filters, setFilters }) => {
   );
 };
 
-test.displayName = "FilterComponent";
 export default FilterComponent;

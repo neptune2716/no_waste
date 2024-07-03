@@ -1,7 +1,6 @@
 import "leaflet.markercluster";
 import { createPathComponent } from "@react-leaflet/core";
 import L from "leaflet";
-import test from "node:test";
 
 const MarkerClusterGroup = createPathComponent(
   ({ children: _c, ...props }, ctx) => {
@@ -32,5 +31,5 @@ const MarkerClusterGroup = createPathComponent(
     };
   }
 );
-test.displayName = "MarkerClusterGroup";
+
 export default MarkerClusterGroup;

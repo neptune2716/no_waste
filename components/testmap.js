@@ -424,6 +424,4 @@ const TestMap = () => {
   );
 };
 
-TestMap.displayName = "TestMap";
-
 export default TestMap;

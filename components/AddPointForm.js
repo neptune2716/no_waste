@@ -136,5 +136,4 @@ const AddPointForm = ({ onClose, onAddPoint }) => {
   );
 };
 
-TestMap.displayName = "AddPointForm";
 export default AddPointForm;

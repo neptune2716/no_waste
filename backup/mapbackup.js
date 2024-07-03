@@ -16,7 +16,6 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import FilterComponent from "./FilterComponent";
 import SearchBar from "./SearchBar";
 import "../src/style.css";
-import test from "node:test";
 
 // Icons configuration
 const customIcon = new L.Icon({
@@ -415,5 +414,5 @@ const TestMap = () => {
     </div>
   );
 };
-test.displayName = "TestMap";
+
 export default TestMap;
