@@ -1,15 +1,12 @@
 import express from "express";
 import { createClient } from "@supabase/supabase-js";
 import cors from "cors";
+import dotenv from "dotenv";
 
 const app = express();
 const port = 3000;
 
-app.use(
-  cors({
-    origin: "https://no-waste-pupgyi06m-neptune2716s-projects.vercel.app",
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 const supabaseUrl = "https://tyybgchyzgeqfjmkyxxq.supabase.co";

@@ -17,6 +17,7 @@ import FilterComponent from "./FilterComponent";
 import SearchBar from "./SearchBar";
 import AddPointButton from "./AddPointButton";
 import AddPointForm from "./AddPointForm";
+import "../src/style.css";
 
 const customIcon = new L.Icon({
   iconUrl: "/icon.png",
@@ -48,13 +49,25 @@ const searchicon = new L.Icon({
   shadowAnchor: [11, 40],
 });
 
+console.log("Backend URL at start:", process.env.REACT_APP_BACKEND_URL);
+
 const fetchPointsWithinBounds = async (bounds) => {
   const { _northEast, _southWest } = bounds;
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  const response = await axios.get(
-    `${backendUrl}/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
-  );
-  return response.data;
+  console.log("Backend URL in fetchPointsWithinBounds:", backendUrl);
+  if (!backendUrl) {
+    console.error("REACT_APP_BACKEND_URL is not defined");
+    return [];
+  }
+  try {
+    const response = await axios.get(
+      `${backendUrl}/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching points:", error);
+    return [];
+  }
 };
 
 const MapComponent = ({ setBounds, fetchPointsWithinBounds, setPoints }) => {
@@ -101,6 +114,10 @@ const MarkerPopup = React.memo(({ point, setPoints, setMoveToPosition }) => {
   const handleSave = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      if (!backendUrl) {
+        console.error("REACT_APP_BACKEND_URL is not defined");
+        return;
+      }
       const response = await axios.put(
         `${backendUrl}/recycling-points/${point.id}`,
         editData
