@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import {
   MapContainer,
   TileLayer,
@@ -59,10 +58,14 @@ const fetchPointsWithinBounds = async (bounds) => {
     return [];
   }
   try {
-    const response = await axios.get(
+    const response = await fetch(
       `${backendUrl}/api/recycling-points?ne_lat=${_northEast.lat}&ne_lng=${_northEast.lng}&sw_lat=${_southWest.lat}&sw_lng=${_southWest.lng}&limit=100`
     );
-    return response.data;
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching points:", error);
     return [];
@@ -117,13 +120,20 @@ const MarkerPopup = React.memo(({ point, setPoints, setMoveToPosition }) => {
         console.error("REACT_APP_BACKEND_URL is not defined");
         return;
       }
-      const response = await axios.put(
+      const response = await fetch(
         `${backendUrl}/api/recycling-points/${point.id}`,
-        editData
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editData),
+        }
       );
-      if (response.status !== 200) {
+      if (!response.ok) {
         throw new Error("Failed to save changes");
       }
+      const updatedPoint = await response.json();
       setPoints((prevPoints) =>
         prevPoints.map((p) => (p.id === point.id ? { ...p, ...editData } : p))
       );
